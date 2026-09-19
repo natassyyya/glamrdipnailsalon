@@ -1,0 +1,34 @@
+﻿# GLAMRDiP+
+
+A responsive salon landing page built with React, TypeScript, and Vinext.
+
+## Local development
+
+Use Node.js 22.13 or newer.
+
+```sh
+npm install
+npm run dev
+```
+
+## Validation
+
+```sh
+npm run build
+npm run lint
+```
+
+## Booking
+
+The form prepares a WhatsApp message. It does not save customer data or reserve a time slot. The customer must send the message, and salon staff must confirm the appointment.
+
+## Before launch
+
+Update the sample address and phone number in `app/page.tsx`. WhatsApp currently uses the number supplied in the brief: `6281234567890`. Replace platform home-page links with the salon's real social profile URLs. Prices, client quotes, review counts, and press names are supplied design content and should be verified by the salon. Images are visual references; source URLs are recorded in `public/images/sources.json`. Replace them with salon-owned or properly licensed photography for a commercial launch.
+
+## Structure
+
+- `app/page.tsx`: landing page, gallery, search, booking, and information dialogs.
+- `app/globals.css`: design system, responsive layouts, and reduced-motion support.
+- `public/images`: local photography assets.
+- `.openai/hosting.json`: Sites hosting configuration.
