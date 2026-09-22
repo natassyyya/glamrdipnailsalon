@@ -32,3 +32,8 @@ Update the sample address and phone number in `app/page.tsx`. WhatsApp currently
 - `app/globals.css`: design system, responsive layouts, and reduced-motion support.
 - `public/images`: local photography assets.
 - `.openai/hosting.json`: Sites hosting configuration.
+
+## Vercel deployment
+
+The checked-in vercel.json runs Next.js directly and uses its .next output. The existing npm run build command remains the Vinext build for Sites. Import the repository into Vercel with the Next.js preset.
+
