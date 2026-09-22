@@ -1,4 +1,4 @@
-﻿# GLAMRDiP+
+# GLAMRDiP+
 
 A responsive salon landing page built with React, TypeScript, and Vinext.
 
@@ -24,7 +24,7 @@ The form prepares a WhatsApp message. It does not save customer data or reserve 
 
 ## Before launch
 
-Update the sample address and phone number in `app/page.tsx`. WhatsApp currently uses the number supplied in the brief: `6281234567890`. Replace platform home-page links with the salon's real social profile URLs. Prices, client quotes, review counts, and press names are supplied design content and should be verified by the salon. Images are visual references; source URLs are recorded in `public/images/sources.json`. Replace them with salon-owned or properly licensed photography for a commercial launch.
+Update the sample address and phone number in `app/page.tsx`. WhatsApp currently uses the fictional US demo number: `13105550148`. Replace platform home-page links with the salon's real social profile URLs. Prices, client quotes, review counts, and press names are supplied design content and should be verified by the salon. Images are visual references; source URLs are recorded in `public/images/sources.json`. Replace them with salon-owned or properly licensed photography for a commercial launch.
 
 ## Structure
 
