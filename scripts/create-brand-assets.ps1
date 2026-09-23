@@ -1,0 +1,36 @@
+Add-Type -AssemblyName System.Drawing
+$rose=[Drawing.ColorTranslator]::FromHtml('#A9567D')
+$blush=[Drawing.ColorTranslator]::FromHtml('#FFF1F7')
+$brush=[Drawing.SolidBrush]::new($rose)
+$background=[Drawing.SolidBrush]::new($blush)
+function Draw-Mark($g,[single]$x,[single]$y,[single]$w,[single]$h){
+  $path=[Drawing.Drawing2D.GraphicsPath]::new()
+  $path.AddBezier($x,($y+$h*.48),$x,($y-$h*.14),($x+$w),($y-$h*.14),($x+$w),($y+$h*.48))
+  $path.AddBezier(($x+$w),($y+$h*.48),($x+$w),($y+$h*1.15),$x,($y+$h*1.15),$x,($y+$h*.48))
+  $path.CloseFigure()
+  $g.FillPath($background,$path)
+  $pen=[Drawing.Pen]::new($rose,($w*.023))
+  $g.DrawPath($pen,$path)
+  $font=[Drawing.Font]::new('Georgia',($w*.78),[Drawing.FontStyle]::Italic,[Drawing.GraphicsUnit]::Pixel)
+  $format=[Drawing.StringFormat]::new();$format.Alignment=[Drawing.StringAlignment]::Center;$format.LineAlignment=[Drawing.StringAlignment]::Center
+  $g.DrawString('G',$font,$brush,[Drawing.RectangleF]::new(($x-$w*.035),($y+$h*.02),$w,$h),$format)
+  $g.FillEllipse($background,($x+$w*.77),($y+$h*.06),($w*.34),($w*.34))
+  $g.DrawLine($pen,($x+$w*.8),($y+$h*.16),($x+$w*1.07),($y+$h*.16))
+  $g.DrawLine($pen,($x+$w*.935),($y+$h*.16-$w*.135),($x+$w*.935),($y+$h*.16+$w*.135))
+  $pen.Dispose();$font.Dispose();$format.Dispose();$path.Dispose()
+}
+$icon=[Drawing.Bitmap]::new(256,256)
+$g=[Drawing.Graphics]::FromImage($icon);$g.SmoothingMode='AntiAlias';$g.TextRenderingHint='AntiAliasGridFit';$g.Clear($blush)
+Draw-Mark $g 52 27 148 198
+$icon.Save((Join-Path $PWD 'public/brand/glamrdip-icon.png'),[Drawing.Imaging.ImageFormat]::Png);$g.Dispose();$icon.Dispose()
+$logo=[Drawing.Bitmap]::new(1000,400)
+$g=[Drawing.Graphics]::FromImage($logo);$g.SmoothingMode='AntiAlias';$g.TextRenderingHint='AntiAliasGridFit';$g.Clear([Drawing.Color]::Transparent)
+Draw-Mark $g 38 44 220 295
+$font=[Drawing.Font]::new('Arial',103,[Drawing.FontStyle]::Regular,[Drawing.GraphicsUnit]::Pixel)
+$g.DrawString('GLAMRDIP',$font,$brush,325,92)
+$plusFont=[Drawing.Font]::new('Arial',65,[Drawing.FontStyle]::Regular,[Drawing.GraphicsUnit]::Pixel)
+$g.DrawString('+',$plusFont,$brush,875,68)
+$small=[Drawing.Font]::new('Arial',27,[Drawing.FontStyle]::Regular,[Drawing.GraphicsUnit]::Pixel)
+$g.DrawString('N A I L   A T E L I E R',$small,$brush,332,223)
+$logo.Save((Join-Path $PWD 'public/brand/glamrdip-logo.png'),[Drawing.Imaging.ImageFormat]::Png)
+$g.Dispose();$logo.Dispose();$font.Dispose();$plusFont.Dispose();$small.Dispose();$brush.Dispose();$background.Dispose()
